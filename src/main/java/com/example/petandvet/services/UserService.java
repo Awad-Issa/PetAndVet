@@ -9,43 +9,15 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
 @Service
 public class UserService {
-
     private UserRepository userRepo;
 
-    public List<User> allUsers() {
-        return userRepo.findAll();
-    }
-
     public User findUserById(Long id) {
-        Optional<User> optionalUser = userRepo.findById(id);
-        if (optionalUser.isPresent()) {
-            return optionalUser.get();
-        } else {
-            return null;
-        }
-    }
-
-    public User findUserByEmail(String email) {
-        Optional<User> optionalUser = userRepo.findByEmail(email);
-        if (optionalUser.isPresent()) {
-            return optionalUser.get();
-        } else {
-            return null;
-        }
-    }
-
-    public User createUser(User u) {
-        return userRepo.save(u);
-    }
-
-    public User updateUser(User u) {
-        return userRepo.save(u);
+        return userRepo.findById(id).orElse(null);
     }
 
     public User register(User newUser, BindingResult result) {
@@ -73,7 +45,7 @@ public class UserService {
             return null;
         }
         Optional<User> potentialUser = userRepo.findByEmail(newLoginObject.getEmail());
-        if (!potentialUser.isPresent()) {
+        if (potentialUser.isEmpty()) {
             result.rejectValue("email", "Unique", "No such email!");
             return null;
         }
@@ -87,5 +59,4 @@ public class UserService {
             return user;
         }
     }
-
 }

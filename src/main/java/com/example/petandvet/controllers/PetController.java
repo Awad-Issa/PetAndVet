@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -25,7 +26,10 @@ public class PetController {
      * we are passing the id of the logged user to get all the pets in their region
      */
     @GetMapping("/pets")
-    public String home(Model model, HttpSession session) {
+    public String home(
+            Model model,
+            HttpSession session
+    ) {
         if (session.getAttribute("user_id") == null) {
             return "redirect:/";
         }
@@ -40,7 +44,10 @@ public class PetController {
      * we are passing the id of the logged user to set it as the creator of the pet post
      */
     @GetMapping("/pets/new")
-    public String newPet(HttpSession session, Model model, @ModelAttribute("pet") Pet pet) {
+    public String newPet(
+            HttpSession session,
+            Model model, @ModelAttribute("pet") Pet pet
+    ) {
         if (session.getAttribute("user_id") == null) {
             return "redirect:/";
         }
@@ -52,7 +59,11 @@ public class PetController {
      * this route is the action of the form to create a pet post
      */
     @PostMapping("/pets/new")
-    public String createPet(HttpSession session, @Valid @ModelAttribute("pet") Pet pet, BindingResult result) {
+    public String createPet(
+            HttpSession session,
+            @Valid @ModelAttribute("pet") Pet pet,
+            BindingResult result
+    ) {
         if (session.getAttribute("user_id") == null) {
             return "redirect:/";
         }
@@ -60,6 +71,85 @@ public class PetController {
             return "newPet.jsp";
         }
         petServ.createPet(pet);
-        return "pets.jsp";
+
+        return "redirect:/";
+    }
+
+    /**
+     * this route renders the details of a pet post
+     */
+    @GetMapping("/pets/{id}")
+    public String showPet(
+            HttpSession session,
+            Model model,
+            @PathVariable("id") Long id
+    ) {
+        if (session.getAttribute("user_id") == null) {
+            return "redirect:/";
+        }
+        model.addAttribute("pet", petServ.getPetById(id));
+        return "showPet.jsp";
+    }
+
+    /**
+     * this route renders the form to edit a pet post
+     */
+    @GetMapping("/pets/{id}/edit")
+    public String editPet(
+            HttpSession session,
+            Model model,
+            @ModelAttribute("pet") Pet pet
+    ) {
+        if (session.getAttribute("user_id") == null) {
+            return "redirect:/";
+        }
+        model.addAttribute("user", userServ.findUserById((Long) session.getAttribute("user_id")));
+        model.addAttribute("pet", petServ.getPetById(pet.getId()));
+        return "editPet.jsp";
+    }
+
+    @PostMapping("/pets/{id}/edit")
+    public String updatePet(
+            HttpSession session,
+            @Valid @ModelAttribute("pet") Pet pet,
+            BindingResult result
+    ) {
+        if (session.getAttribute("user_id") == null) {
+            return "redirect:/";
+        }
+        if (result.hasErrors()) {
+            return "editPet.jsp";
+        }
+        petServ.updatePet(pet);
+        return "redirect:/pets";
+    }
+
+    @GetMapping("/pets/{id}/delete")
+    public String deletePet(
+            HttpSession session,
+            @PathVariable("id") Long id
+    ) {
+        if (session.getAttribute("user_id") == null) {
+            return "redirect:/";
+        }
+        petServ.deletePet(id);
+        return "redirect:/pets";
+    }
+
+    /**
+     * find all pets by user
+     * */
+    @GetMapping("/pets/user")
+    public String showUserPets(
+            HttpSession session,
+            Model model
+    ) {
+        if (session.getAttribute("user_id") == null) {
+            return "redirect:/";
+        }
+        User user = userServ.findUserById((Long) session.getAttribute("user_id"));
+        model.addAttribute("user", user);
+        model.addAttribute("pets", user.getPets());
+        return "userPets.jsp";
     }
 }
