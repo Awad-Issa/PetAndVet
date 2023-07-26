@@ -52,9 +52,9 @@
 	</form:select>
 	<form:errors path="status" style="color:red;"/>
 	
-	<form:label path="details">details:</form:label>
-	<form:input path="details"/>
-	<form:errors path="details" cssClass="error"/>
+	<form:label path="description">description:</form:label>
+	<form:input path="description"/>
+	<form:errors path="description" cssClass="error"/>
 	
 	<input type="submit" value="add post"/>
 </form:form>

@@ -48,9 +48,6 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Pet> pets;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Product> products;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Order> orders;
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Cart cart;
 }

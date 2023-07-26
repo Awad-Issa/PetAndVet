@@ -40,11 +40,7 @@ public class PetController {
      * we are passing the id of the logged user to set it as the creator of the pet post
      */
     @GetMapping("/pets/new")
-    public String newPet(
-            HttpSession session,
-            Model model,
-            @ModelAttribute("pet") Pet pet
-    ) {
+    public String newPet(HttpSession session, Model model, @ModelAttribute("pet") Pet pet) {
         if (session.getAttribute("user_id") == null) {
             return "redirect:/";
         }
@@ -56,11 +52,7 @@ public class PetController {
      * this route is the action of the form to create a pet post
      */
     @PostMapping("/pets/new")
-    public String createPet(
-            HttpSession session,
-            @Valid @ModelAttribute("pet") Pet pet,
-            BindingResult result
-    ) {
+    public String createPet(HttpSession session, @Valid @ModelAttribute("pet") Pet pet, BindingResult result) {
         if (session.getAttribute("user_id") == null) {
             return "redirect:/";
         }

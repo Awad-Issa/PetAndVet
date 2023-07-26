@@ -9,25 +9,20 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name="orders")
+@Table(name="carts")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "orders_products",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Product> products;
 }
