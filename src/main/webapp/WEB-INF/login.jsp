@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -48,6 +48,26 @@
                     <form:input type="password" path="confirm" class="form-control"/>
                 </div>
             </div>
+            <div class="form-group row mb-3">
+                <form:label path="phoneNumber" class="col-sm-4 col-form-label">phone number:</form:label>
+                <form:errors path="phoneNumber" style="color:red;"/>
+                <div class="col-sm-8">
+                    <form:input path="phoneNumber" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <form:label path="location" class="col-sm-4 col-form-label">location:</form:label>
+                <form:errors path="location" style="color:red;"/>
+                <div class="col-sm-8">
+                    <form:select path="location" class="form-control">
+                        <form:option value="select a location"/>
+                        <form:option value="ramallah"/>
+                        <form:option value="nablus"/>
+                        <form:option value="hebron"/>
+                        <form:option value="jerusalem"/>
+                        
+                    </form:select>
+                </div>
             <input id="button" type="submit" value="Submit" class="btn btn-primary"/>
         </form:form>
     </section>
