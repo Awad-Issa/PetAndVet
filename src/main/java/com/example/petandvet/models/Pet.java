@@ -30,7 +30,6 @@ public class Pet {
     @NotNull(message = "Age is required!")
     private Integer age;
 
-    @Size(min = 10, message = "details must be at least 10 characters")
     private String description;
 
     @NotBlank(message = "Gender is required!")

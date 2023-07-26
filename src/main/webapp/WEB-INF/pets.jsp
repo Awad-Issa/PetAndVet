@@ -16,7 +16,7 @@
 	<h4>This is your dashboard.</h4>
 	<h4><a href="/logout">logout</a></h4>
 	<c:forEach items="${pets}" var="pet">
-		<c:out value="${pet.id} ${pet.name} ${pet.age} ${pet.breed} ${pet.gender} ${pet.details}"/><br>
+		<c:out value="${pet.id} ${pet.name} ${pet.age} ${pet.breed} ${pet.gender} ${pet.description}"/><br>
 	</c:forEach>
 </main>
 </body>

@@ -12,19 +12,23 @@ import java.util.List;
 public class PetService {
     private final PetRepository petRepo;
 
-    public Pet getPetById(Long id) {
-        return petRepo.findById(id).orElse(null);
-    }
-
     public void createPet(Pet pet) {
         petRepo.save(pet);
     }
 
-    public List<Pet> getAllPets() {
-        return (List<Pet>) petRepo.findAll();
+    public Pet getPetById(Long id) {
+        return petRepo.findById(id).orElse(null);
     }
 
     public List<Pet> getPetsByLocation(String location) {
         return petRepo.findByLocation(location);
+    }
+
+    public void updatePet(Pet pet) {
+        petRepo.save(pet);
+    }
+
+    public void deletePet(Long id) {
+        petRepo.deleteById(id);
     }
 }
