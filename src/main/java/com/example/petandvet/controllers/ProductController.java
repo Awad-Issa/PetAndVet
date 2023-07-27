@@ -79,4 +79,10 @@ public class ProductController {
         return "redirect:/pets";
     }
 
+    @GetMapping("product/{id}/delete")
+    public String deleteProduct(@PathVariable("id") Long id){
+        productServ.deleteProduct(id);
+        return "redirect:/pets";
+    }
+
 }

@@ -15,4 +15,10 @@ public class ProductService {
         productRepo.save(product);
     }
 
+    public void deleteProduct(Long id){
+        productRepo.deleteById(id);
+    }
+
+
+
 }
