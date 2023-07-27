@@ -19,7 +19,7 @@
 <c:out value="${pet.name}"/>
 <c:out value="${pet.age}"/>
 <c:out value="${pet.gender}"/>
-<c:out value="${pet.breed}"/>
+<c:out value="${pet.breed.name}"/>
 <c:out value="${pet.location}"/>
 <c:out value="${pet.description}"/>
 <c:out value="${pet.status}"/>

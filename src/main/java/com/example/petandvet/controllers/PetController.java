@@ -2,6 +2,7 @@ package com.example.petandvet.controllers;
 
 import com.example.petandvet.models.Pet;
 import com.example.petandvet.models.User;
+import com.example.petandvet.services.BreedService;
 import com.example.petandvet.services.PetService;
 import com.example.petandvet.services.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class PetController {
     private final PetService petServ;
     private final UserService userServ;
+    private final BreedService breedServ;
 
     /**
      * this route renders the dashboard of the logged user
@@ -52,6 +54,7 @@ public class PetController {
             return "redirect:/";
         }
         model.addAttribute("user_id", session.getAttribute("user_id"));
+        model.addAttribute("breeds", breedServ.getAllBreeds());
         return "newPet.jsp";
     }
 
