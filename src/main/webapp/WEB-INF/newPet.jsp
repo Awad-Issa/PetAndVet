@@ -33,6 +33,12 @@
 		<form:option value="male"/>
 	</form:select>
 	<form:errors path="gender"/>
+	
+	<form:label path="breed">breed:</form:label>
+	<form:select path="breed">
+		<form:options items="${breeds}" itemLabel="name" itemValue="id"/>
+	</form:select>
+	<form:errors path="breed" cssClass="error"/>
 
 	<form:label path="location">location:</form:label>
 	<form:select path="location">
