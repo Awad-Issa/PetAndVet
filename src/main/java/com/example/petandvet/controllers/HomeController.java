@@ -24,7 +24,7 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model, HttpSession session) {
         if (session.getAttribute("user_id") != null) {
-            return "redirect:/pets";
+            return "redirect:/home";
         }
         model.addAttribute("newUser", new User());
         model.addAttribute("newLogin", new LoginUser());
@@ -40,7 +40,7 @@ public class HomeController {
             return "login.jsp";
         }
         session.setAttribute("user_id", regUser.getId());
-        return "redirect:/pets";
+        return "redirect:/home";
     }
 
     @PostMapping("/login")
@@ -52,7 +52,7 @@ public class HomeController {
             return "login.jsp";
         }
         session.setAttribute("user_id", logUser.getId());
-        return "redirect:/pets";
+        return "redirect:/home";
     }
 
     @GetMapping("/logout")
@@ -60,4 +60,5 @@ public class HomeController {
         session.invalidate();
         return "redirect:/";
     }
+
 }

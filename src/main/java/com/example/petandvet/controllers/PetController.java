@@ -27,7 +27,7 @@ public class PetController {
      * this route renders the dashboard of the logged user
      * we are passing the id of the logged user to get all the pets in their region
      */
-    @GetMapping("/pets")
+    @GetMapping("/home")
     public String home(
             Model model,
             HttpSession session
@@ -38,7 +38,7 @@ public class PetController {
         User user = userServ.findUserById((Long) session.getAttribute("user_id"));
         model.addAttribute("user", user);
         model.addAttribute("pets", petServ.getPetsByLocation(user.getLocation()));
-        return "pets.jsp";
+        return "homePage.jsp";
     }
 
     /**
