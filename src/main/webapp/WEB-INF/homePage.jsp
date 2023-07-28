@@ -45,7 +45,7 @@
             <a href="#team">team</a>
           </li>
           <li>
-            <a href="#testimony">testimonils</a>
+            <a href="#testimony">${user.userName}</a>
           </li>
           <li>
             <a href="#contact">contact</a>
@@ -54,10 +54,18 @@
       </div>
     </nav>
     <br>
-    <h1 style="    font-family: Gabriola;
-    color: floralwhite;color:#ffdc95">Welcome, <c:out value="${user.userName}"/> !</h1>
+<%--    <h1 style="    font-family: Gabriola;--%>
+<%--    color: floralwhite;color:#ffdc95">Welcome, <c:out value="${user.userName}"/> !</h1>--%>
   </div>
   <!-- /.container -->
+  <div style="display: flex; justify-content: space-evenly;margin-top: 7%">
+  <c:forEach items="${breed}" var = "breeds">
+    <div style="width: 150px;height: 150px;background-color: #82905f; border-radius: 10px;border: 2px solid #82905f;box-shadow: 0px 0px 1px 1px  #fce98d ">${breeds.name}</div>
+  </c:forEach>
+  </div>
+
+
+
 </header>
 
 </body>

@@ -38,6 +38,7 @@ public class PetController {
         User user = userServ.findUserById((Long) session.getAttribute("user_id"));
         model.addAttribute("user", user);
         model.addAttribute("pets", petServ.getPetsByLocation(user.getLocation()));
+        model.addAttribute("breed",breedServ.getAllBreeds());
         return "homePage.jsp";
     }
 

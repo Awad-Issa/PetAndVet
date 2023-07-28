@@ -3,6 +3,7 @@ package com.example.petandvet.controllers;
 
 import com.example.petandvet.models.User;
 import com.example.petandvet.models.LoginUser;
+import com.example.petandvet.services.BreedService;
 import com.example.petandvet.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HomeController {
 
     private UserService userServ;
+    private BreedService breedServ;
 
     @GetMapping("/")
     public String index(Model model, HttpSession session) {
