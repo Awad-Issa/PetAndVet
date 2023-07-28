@@ -36,4 +36,8 @@ public class BreedService {
     public List<Product> getProductsByBreed(Breed breed) {
         return breed.getProducts();
     }
+
+    public Breed getBreedByName(String name) {
+        return breedRepo.getBreedByName(name);
+    }
 }

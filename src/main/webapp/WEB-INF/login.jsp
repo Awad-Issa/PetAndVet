@@ -11,15 +11,16 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
+<body style="background-color: #fffae3;">
    <div class="container">
-    <h1>Welcome!</h1>
-    <h3>Join our growing community</h3>
 </div>
-<main class="container">
-    <section>
+<main class="container" style="      font-family: auto;  display: flex;
+    max-width: 720px;
+    justify-content: space-around;
+    margin: 0 auto;">
+    <section style="margin-right: 20px">
         <form:form action="/register" method="post" modelAttribute="newUser">
-            <h2>Registration</h2>
+            <h2 style="color: #809842;  text-decoration: underline;">Registration</h2><br>
             <div class="form-group row mb-3">
                 <form:label path="userName" class="col-sm-4 col-form-label">User Name:</form:label>
                 <form:errors path="userName" style="color:red;"/>
@@ -60,20 +61,23 @@
                 <form:errors path="location" style="color:red;"/>
                 <div class="col-sm-8">
                     <form:select path="location" class="form-control">
-                        <form:option value="select a location"/>
-                        <form:option value="ramallah"/>
-                        <form:option value="nablus"/>
-                        <form:option value="hebron"/>
-                        <form:option value="jerusalem"/>
+                        <form:option value="Select a location"/>
+                        <form:option value="Ramallah"/>
+                        <form:option value="Nablus"/>
+                        <form:option value="Jebron"/>
+                        <form:option value="Jerusalem"/>
                         
                     </form:select>
+                    <br>
                 </div>
-            <input id="button" type="submit" value="Submit" class="btn btn-primary"/>
+            <input id="button" type="submit" value="Submit" class="btn btn-primary" style="background-color: #ff821c"/>
         </form:form>
     </section>
     <section>
+
+
         <form:form action="/login" method="post" modelAttribute="newLogin">
-            <h2>Login</h2>
+            <h2 style="color: #809842;text-decoration: underline;">Login</h2><br>
             <div class="form-group row mb-3">
                 <form:label path="email" class="col-sm-4 col-form-label">Email:</form:label>
                 <form:errors path="email" style="color:red;"/>
@@ -88,7 +92,7 @@
                     <form:input type="password" path="password" class="form-control"/>
                 </div>
             </div>
-            <input id="button" type="submit" value="Submit" class="btn btn-primary"/>
+            <input id="button" type="submit" value="Submit" class="btn btn-primary" style="background-color: #ff821c"/>
         </form:form>
     </section>
 </main>

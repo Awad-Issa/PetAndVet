@@ -1,8 +1,8 @@
 package com.example.petandvet.controllers;
 
 
-import com.example.petandvet.models.Pet;
 import com.example.petandvet.models.Product;
+import com.example.petandvet.services.BreedService;
 import com.example.petandvet.services.ProductService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProductController {
 
     private final ProductService productServ;
+    private final BreedService breedServ;
 
     @GetMapping("product/new")
     public String newProduct(
@@ -29,7 +30,7 @@ public class ProductController {
         if (session.getAttribute("user_id") == null) {
             return "redirect:/";
         }
-
+        model.addAttribute("breeds",(breedServ.getAllBreeds()));
         return "newProduct.jsp";
     }
 
@@ -53,8 +54,8 @@ public class ProductController {
     @GetMapping("/product/{id}/edit")
     public String newProductPage(
             HttpSession session,
-            Model model, @ModelAttribute("product")
-            Product product,@PathVariable("id")Long id
+            @ModelAttribute("product")
+            Product product
     ) {
         if (session.getAttribute("user_id") == null) {
             return "redirect:/";
@@ -80,9 +81,25 @@ public class ProductController {
     }
 
     @GetMapping("product/{id}/delete")
-    public String deleteProduct(@PathVariable("id") Long id){
+    public String deleteProduct(@PathVariable("id") Long id, HttpSession session){
+        if (session.getAttribute("user_id") == null) {
+            return "redirect:/";
+        }
         productServ.deleteProduct(id);
         return "redirect:/pets";
+    }
+
+    @GetMapping("{breed}/products")
+    public String getBreedProducts(
+            HttpSession session,
+            Model model,
+            @PathVariable("breed") String name
+    ){
+        if (session.getAttribute("user_id") == null) {
+            return "redirect:/";
+        }
+       model.addAttribute("breed", breedServ.getBreedByName(name));
+       return "breedProducts.jsp";
     }
 
 }
