@@ -1,8 +1,7 @@
 package com.example.petandvet.controllers;
 
-
-import com.example.petandvet.models.User;
 import com.example.petandvet.models.LoginUser;
+import com.example.petandvet.models.User;
 import com.example.petandvet.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @AllArgsConstructor
 @Controller
 public class HomeController {
-
     private UserService userServ;
 
     @GetMapping("/")
@@ -59,5 +57,17 @@ public class HomeController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+
+    @GetMapping("/user")
+    public String getUser(
+            Model model,
+            HttpSession session
+    ) {
+        if (session.getAttribute("user_id") == null) {
+            return "redirect:/";
+        }
+        model.addAttribute("user", userServ.findUserById((Long) session.getAttribute("user_id")));
+        return "user.jsp";
     }
 }
