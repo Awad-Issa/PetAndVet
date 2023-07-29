@@ -34,7 +34,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/home">Home</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="/aboutUs">About Us</a></li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -63,7 +63,7 @@
     </div>
 </nav>
 <!-- Header-->
-<header class="bg-dark py-5">
+<header class="bg-dark py-5" style="background-image: url('');" >
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Shop in style</h1>
@@ -112,7 +112,7 @@
     <li class="nav-item"><a class="nav-link" href="/favorite">Favorite</a></li>
     <li class="nav-item"><a class="nav-link" href="/pets/new">Add Pet</a></li>
 
-    <li class="nav-item"><a class="nav-link" href="/pets/location">Search in ${user.location}</a></li>
+    <li class="nav-item"><a class="nav-link" href="/petsLocation">Search in ${user.location}</a></li>
             </ul>
             </form>
         </div>
@@ -145,7 +145,7 @@
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <img class="card-img-top" src="${pet.image}" alt="..."/>
+                        <img class="card-img-top" src="https://png.pngtree.com/template/20190629/ourmid/pngtree-pet-shop-logo-templatevector-illustration-icon-element---vector-image_223677.jpg" alt="..."/>
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">

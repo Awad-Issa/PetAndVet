@@ -65,10 +65,6 @@ public class HomeController {
     return "redirect:/";
   }
 
-  @GetMapping("/aboutUs")
-  public String aboutUsPage() {
-    return "aboutUs.jsp";
-  }
 
   @GetMapping("/profilePage")
   public String profilePage(HttpSession session, Model model) {
@@ -81,5 +77,20 @@ public class HomeController {
     model.addAttribute("breed", breedServ.getAllBreeds());
     return "profilePage.jsp";
   }
+
+
+  @GetMapping("/aboutUs")
+  public String abouUsPage(HttpSession session, Model model) {
+    if (session.getAttribute("user_id") == null) {
+
+      return "redirect:/";
+    }
+    User user = userServ.findUserById((Long) session.getAttribute("user_id"));
+    model.addAttribute("user", user);
+
+    return "aboutUs.jsp";
+  }
+
+
 
 }

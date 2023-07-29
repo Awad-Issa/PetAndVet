@@ -46,7 +46,7 @@ public class PetController {
 
 
 
-  @GetMapping("/pets/location")
+  @GetMapping("/petsLocation")
   public String searchLocation(
       Model model,
       HttpSession session
@@ -78,7 +78,7 @@ public class PetController {
     }
     model.addAttribute("user_id", session.getAttribute("user_id"));
     model.addAttribute("breeds", breedServ.getAllBreeds());
-    return "newPet.jsp";
+    return "createPet.jsp";
   }
 
   /**

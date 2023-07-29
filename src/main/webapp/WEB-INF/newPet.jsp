@@ -43,10 +43,10 @@
     <form:label path="location">location:</form:label>
     <form:select path="location">
         <form:option value="select a location"/>
-        <form:option value="Ramallah"/>
-        <form:option value="Nablus"/>
-        <form:option value="Hebron"/>
-        <form:option value="Jerusalem"/>
+        <form:option value="ramallah"/>
+        <form:option value="nablus"/>
+        <form:option value="hebron"/>
+        <form:option value="jerusalem"/>
     </form:select>
     <form:errors path="location" style="color:red;"/>
 
@@ -64,7 +64,5 @@
 
     <input type="submit" value="add post"/>
 </form:form>
-
-<a href="/home">Home</a>
 </body>
 </html>
