@@ -44,6 +44,26 @@ public class PetController {
     return "HomeTest.jsp";
   }
 
+
+
+  @GetMapping("/pets/location")
+  public String searchLocation(
+      Model model,
+      HttpSession session
+  ) {
+    if (session.getAttribute("user_id") == null) {
+      return "redirect:/";
+    }
+    User user = userServ.findUserById((Long) session.getAttribute("user_id"));
+    model.addAttribute("user", user);
+    model.addAttribute("pets", petServ.getPetsByLocation(user.getLocation()));
+//    model.addAttribute("pets", petServ.getAllPets());
+    model.addAttribute("breed", breedServ.getAllBreeds());
+    return "searchLocation.jsp";
+  }
+
+
+
   /**
    * this route renders the form to create a pet post we are passing the id of the logged user to
    * set it as the creator of the pet post

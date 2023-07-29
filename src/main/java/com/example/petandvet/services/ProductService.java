@@ -27,9 +27,9 @@ public class ProductService {
     return breed.getProducts();
   }
 
-//    public List<Product> getAllProducts(Product product){
-//        return (List<Product>) productRepo.findAll();
-//    }
+    public List<Product> getAllProducts(){
+        return (List<Product>) productRepo.findAll();
+    }
 
 
 }

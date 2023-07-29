@@ -40,4 +40,11 @@ public class BreedService {
   public Breed getBreedByName(String name) {
     return breedRepo.getBreedByName(name);
   }
+
+
+//  public Breed getBreedPets(Breed breed){
+//    return breedRepo.
+//  }
+
+
 }

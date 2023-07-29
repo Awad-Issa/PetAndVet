@@ -2,8 +2,10 @@ package com.example.petandvet.controllers;
 
 
 import com.example.petandvet.models.Product;
+import com.example.petandvet.models.User;
 import com.example.petandvet.services.BreedService;
 import com.example.petandvet.services.ProductService;
+import com.example.petandvet.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -21,6 +23,7 @@ public class ProductController {
 
   private final ProductService productServ;
   private final BreedService breedServ;
+  public final UserService userServ;
 
   @GetMapping("product/new")
   public String newProduct(
@@ -100,6 +103,17 @@ public class ProductController {
     }
     model.addAttribute("breed", breedServ.getBreedByName(name));
     return "breedProducts.jsp";
+  }
+
+  @GetMapping("/allProducts")
+  public String allProductsPage(Model model, HttpSession session) {
+    if (session.getAttribute("user_id") == null) {
+      return "redirect:/";
+    }
+    User user = userServ.findUserById((Long) session.getAttribute("user_id"));
+    model.addAttribute("user", user);
+    model.addAttribute("products",productServ.getAllProducts());
+    return "allProducts.jsp";
   }
 
 }
