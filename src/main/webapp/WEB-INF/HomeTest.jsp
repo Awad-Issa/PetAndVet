@@ -145,7 +145,7 @@
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <img class="card-img-top" src="https://png.pngtree.com/template/20190629/ourmid/pngtree-pet-shop-logo-templatevector-illustration-icon-element---vector-image_223677.jpg" alt="..."/>
+                        <img class="card-img-top" src="${pet.image}" alt="no"/>
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">

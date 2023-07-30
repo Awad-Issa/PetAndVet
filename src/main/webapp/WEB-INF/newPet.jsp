@@ -62,6 +62,10 @@
     <form:input path="description"/>
     <form:errors path="description" cssClass="error"/>
 
+    <form:label path="image">Image:</form:label>
+    <form:input path="image"/>
+    <form:errors path="image" cssClass="error"/>
+
     <input type="submit" value="add post"/>
 </form:form>
 </body>
