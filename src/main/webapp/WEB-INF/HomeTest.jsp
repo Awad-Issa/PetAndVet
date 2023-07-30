@@ -103,7 +103,7 @@
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <c:forEach items="${breed}" var="breeds">
 
-            <li><a class="dropdown-item" href="#!">${breeds.name}</a></li>
+            <li><a class="dropdown-item" href="">${breeds.name}</a></li>
             </c:forEach>
 
         </ul>
