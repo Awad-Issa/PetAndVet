@@ -24,6 +24,10 @@ public class PetService {
     return petRepo.findByLocation(location);
   }
 
+//  public List<Pet> getPetsByBreed(String breed){
+//    return petRepo.findByBreed(breed);
+//  }
+
 
   public List<Pet> getAllPets(){
     return (List<Pet>) petRepo.findAll();

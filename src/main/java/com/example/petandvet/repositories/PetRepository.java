@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface PetRepository extends CrudRepository<Pet, Long> {
 
   List<Pet> findByLocation(String location);
+//  List<Pet> findByBreed(String breed);
 }
