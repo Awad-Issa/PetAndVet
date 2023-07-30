@@ -5,14 +5,14 @@
   Time: 1:37 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %>
 <html>
 <head>
-	<title>pet details</title>
+    <title>pet details</title>
 </head>
 <body>
 <c:out value="${pet.image}"/>
@@ -23,5 +23,10 @@
 <c:out value="${pet.location}"/>
 <c:out value="${pet.description}"/>
 <c:out value="${pet.status}"/>
+<a href="/home">Home</a>
+
+${pet.user.userName}
+${pet.user.email}
+${pet.user.phoneNumber}
 </body>
 </html>

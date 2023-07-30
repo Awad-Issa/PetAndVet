@@ -3,15 +3,19 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %>
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>Profile Page</title>
 </head>
 <body>
 
-<c:forEach var="pet" items="${pets}">
-    <c:out value="${pet.name}"/>
-</c:forEach>
+${user.userName}
+${user.email}
+${user.phoneNumber}
+${user.location}
+
+<a href="/home">Home</a>
+
+
 </body>
 </html>

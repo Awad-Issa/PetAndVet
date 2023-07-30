@@ -1,72 +1,82 @@
 package com.example.petandvet.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
-
 @Entity
-@Table(name="pets")
+@Table(name = "pets")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class Pet {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @NotBlank(message = "Name is required!")
-    @Size(min = 3, max = 30, message = "Name must be between 3 and 30 characters")
-    private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @NotNull(message = "Age is required!")
-    private Integer age;
+  @NotBlank(message = "Name is required!")
+  @Size(min = 3, max = 30, message = "Name must be between 3 and 30 characters")
+  private String name;
 
-    private String description;
+  @NotNull(message = "Age is required!")
+  private Integer age;
 
-    @NotBlank(message = "Gender is required!")
-    private String gender;
+  private String description;
 
-    @NotBlank(message = "Location is required!")
-    private String location;
+  @NotBlank(message = "Gender is required!")
+  private String gender;
 
-    @NotBlank(message = "Status is required!")
-    private String status;
+  @NotBlank(message = "Location is required!")
+  private String location;
 
-    private String image;
+  @NotBlank(message = "Status is required!")
+  private String status;
 
-    @Column(updatable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createdAt;
+  private String image;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date updatedAt;
+  @Column(updatable = false)
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  private Date createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-        this.status = "Available";
-    }
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  private Date updatedAt;
 
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = new Date();
-    }
+  @PrePersist
+  protected void onCreate() {
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+    this.status = "Available";
+  }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="breed_id")
-    private Breed breed;
+  @PreUpdate
+  protected void onUpdate() {
+    this.updatedAt = new Date();
+  }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User user;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "breed_id")
+  private Breed breed;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id")
+  private User user;
 }

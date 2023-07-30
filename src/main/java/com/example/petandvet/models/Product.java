@@ -1,61 +1,71 @@
 package com.example.petandvet.models;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
-
 @Entity
-@Table(name="products")
+@Table(name = "products")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @NotBlank(message = "Name is required!")
-    private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String description;
+  @NotBlank(message = "Name is required!")
+  private String name;
 
-    @NotNull(message = "Price is required!")
-    private Double price;
+  private String description;
 
-    private String image;
+  @NotNull(message = "Price is required!")
+  private Double price;
 
-    @Column(updatable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createdAt;
+  private String image;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date updatedAt;
+  @Column(updatable = false)
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  private Date createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-    }
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  private Date updatedAt;
 
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = new Date();
-    }
+  @PrePersist
+  protected void onCreate() {
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+  }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "breed_id")
-    private Breed breed;
+  @PreUpdate
+  protected void onUpdate() {
+    this.updatedAt = new Date();
+  }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "breed_id")
+  private Breed breed;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "cart_id")
+  private Cart cart;
 }

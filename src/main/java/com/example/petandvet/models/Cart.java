@@ -1,48 +1,59 @@
 package com.example.petandvet.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
+import java.util.Date;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
-import java.util.List;
-
 @Entity
-@Table(name="carts")
+@Table(name = "carts")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cart {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(updatable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createdAt;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date updatedAt;
+  @Column(updatable = false)
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  private Date createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-    }
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  private Date updatedAt;
 
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = new Date();
-    }
+  @PrePersist
+  protected void onCreate() {
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+  }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+  @PreUpdate
+  protected void onUpdate() {
+    this.updatedAt = new Date();
+  }
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Product> products;
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id")
+  private User user;
+
+  @OneToMany(fetch = FetchType.LAZY)
+  private List<Product> products;
 }
