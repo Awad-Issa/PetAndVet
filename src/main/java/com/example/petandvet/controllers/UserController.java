@@ -21,6 +21,9 @@ public class UserController {
     }
     @GetMapping("/user")
     public String showUser(Model model, HttpSession session){
+        if (session.getAttribute("user_id") == null) {
+            return "redirect:/";
+        }
         User user = userServ.findUserById((Long) session.getAttribute("user_id"));
         model.addAttribute("user", user);
         return "profilePage.jsp";
