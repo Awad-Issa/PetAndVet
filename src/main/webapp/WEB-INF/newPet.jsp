@@ -38,38 +38,38 @@
                 </li>
                 <li class="nav-item"><a class="nav-link" href="/aboutUs">About Us</a></li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">${user.userName}</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/profilePage">Profile Page</a></li>
-                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+<%--                <li class="nav-item dropdown">--%>
+<%--                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"--%>
+<%--                       data-bs-toggle="dropdown" aria-expanded="false">${user.userName}</a>--%>
+<%--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">--%>
+<%--                        <li><a class="dropdown-item" href="/profilePage">Profile Page</a></li>--%>
+<%--                        <li><a class="dropdown-item" href="/logout">Logout</a></li>--%>
 
 
-                        <li>
-                            <hr class="dropdown-divider"/>
-                        </li>
-                        <li><a class="dropdown-item" href="#!">Admin</a></li>
+<%--                        <li>--%>
+<%--                            <hr class="dropdown-divider"/>--%>
+<%--                        </li>--%>
+<%--                        <li><a class="dropdown-item" href="#!">Admin</a></li>--%>
 
-                    </ul>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
-            </form>
+<%--                    </ul>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+<%--            <form class="d-flex">--%>
+<%--                <button class="btn btn-outline-dark" type="submit">--%>
+<%--                    <i class="bi-cart-fill me-1"></i>--%>
+<%--                    Cart--%>
+<%--                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>--%>
+<%--                </button>--%>
+<%--            </form>--%>
         </div>
     </div>
 </nav>
 <!-- Header-->
-<header class="bg-dark py-5">
+<header class="bg-dark py-5" style="background-image:  !important;">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Shop in style</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <p class="lead fw-normal text-white-50 mb-0">Pet And vet</p>
         </div>
     </div>
 </header>
@@ -224,9 +224,9 @@
                     </form:select>
                     <form:errors path="status" style="color:red;"/><br>
 
-                    <form:label path="description">Description:</form:label>
-                    <form:input path="description"/>
-                    <form:errors path="description" cssClass="error"/>
+                    <label >Description</label>
+                    <textarea name="description" rows="5" cols="33"></textarea>
+                    
                     <br>
                     <form:label path="image">Image:</form:label>
                     <form:input path="image"/>

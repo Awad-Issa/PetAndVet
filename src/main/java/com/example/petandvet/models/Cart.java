@@ -7,7 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -39,6 +40,9 @@ public class Cart {
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date updatedAt;
 
+  public Cart(Long userId) {
+  }
+
   @PrePersist
   protected void onCreate() {
     this.createdAt = new Date();
@@ -54,6 +58,11 @@ public class Cart {
   @JoinColumn(name = "user_id")
   private User user;
 
-  @OneToMany(fetch = FetchType.LAZY)
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "carts_products",
+      joinColumns = @JoinColumn(name = "product_id"),
+      inverseJoinColumns = @JoinColumn(name = "cart_id")
+  )
   private List<Product> products;
 }

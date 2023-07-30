@@ -25,17 +25,17 @@ public class ProductController {
   private final BreedService breedServ;
   public final UserService userServ;
 
-  @GetMapping("product/new")
-  public String newProduct(
-      HttpSession session,
-      Model model, @ModelAttribute("product") Product product
-  ) {
-    if (session.getAttribute("user_id") == null) {
-      return "redirect:/";
-    }
-    model.addAttribute("breeds", (breedServ.getAllBreeds()));
-    return "newProduct.jsp";
-  }
+//  @GetMapping("product/new")
+//  public String newProduct(
+//      HttpSession session,
+//      Model model, @ModelAttribute("product") Product product
+//  ) {
+//    if (session.getAttribute("user_id") == null) {
+//      return "redirect:/";
+//    }
+//    model.addAttribute("breeds", (breedServ.getAllBreeds()));
+//    return "newProduct.jsp";
+//  }
 
   @PostMapping("/product/new")
   public String createProduct(
@@ -47,11 +47,11 @@ public class ProductController {
       return "redirect:/";
     }
     if (result.hasErrors()) {
-      return "newProduct.jsp";
+      return "admin.jsp";
     }
     productServ.createProduct(product);
 
-    return "redirect:/pets";
+    return "redirect:/admin";
   }
 
   @GetMapping("/product/{id}/edit")
