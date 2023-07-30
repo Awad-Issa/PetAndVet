@@ -37,7 +37,7 @@ public class HomeController {
 
   @PostMapping("/register")
   public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result,
-      Model model, HttpSession session) {
+                         Model model, HttpSession session) {
     User regUser = userServ.register(newUser, result);
     if (result.hasErrors()) {
       model.addAttribute("newLogin", new LoginUser());
@@ -49,7 +49,7 @@ public class HomeController {
 
   @PostMapping("/login")
   public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result,
-      Model model, HttpSession session) {
+                      Model model, HttpSession session) {
     User logUser = userServ.login(newLogin, result);
     if (result.hasErrors()) {
       model.addAttribute("newUser", new User());
