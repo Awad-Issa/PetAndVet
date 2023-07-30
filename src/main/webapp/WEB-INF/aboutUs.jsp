@@ -72,16 +72,24 @@
 <!-- Section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" style="display: flex">
+
+        <p style="    font-style: oblique;
+    font-weight: 400;">Spring project
+
+            This project makes life more easy for pets lovers. You can put your pet in adoption site, that lets another user to adopt the pet you posted!.
+            Not just this, we have more features, pets products, pets services and more!
+            The project was build by JAVA language, Spring Framwork.
+            Team members: <br><br>
+            ⦁	Awad Issa <br>
+            ⦁	Oday Iseed <br>
+            ⦁	Hakeem Bargouthi
 
 
 
+        </p>
 
-
-
-
-
-
+            <img src="https://cdn.pixabay.com/photo/2016/04/27/06/51/businessman-1356063_1280.jpg" alt="">
 
 
 
@@ -97,6 +105,18 @@
         </div>
     </div>
 </section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
 <!-- Footer-->
 <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
