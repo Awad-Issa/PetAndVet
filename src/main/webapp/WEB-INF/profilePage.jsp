@@ -8,13 +8,9 @@
     <title>Profile Page</title>
 </head>
 <body>
+test
 
-${user.userName}
-${user.email}
-${user.phoneNumber}
-${user.location}
-
-<a href="/home">Home</a>
+<h1><c:out value="${user.email}"/></h1>
 
 
 </body>
