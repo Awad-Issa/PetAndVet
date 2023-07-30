@@ -195,4 +195,33 @@ public class PetController {
     model.addAttribute("pets", user.getPets());
     return "userPets.jsp";
   }
+  
+  @GetMapping("/pets/{id}/adopt")
+  public String adopt(
+      HttpSession session,
+      Model model,
+      @PathVariable("id") Long id
+  ) {
+    if (session.getAttribute("user_id") == null) {
+      return "redirect:/";
+    }
+    model.addAttribute("user", userServ.findUserById((Long) session.getAttribute("user_id")));
+    model.addAttribute("pet", petServ.getPetById(id));
+    return "showPet.jsp";
+  }
+  
+  @GetMapping("/pets/{id}/confirm")
+    public String confirm(
+        HttpSession session,
+        Model model,
+        @PathVariable("id") Long id
+    ) {
+        if (session.getAttribute("user_id") == null) {
+        return "redirect:/";
+        }
+        model.addAttribute("user", userServ.findUserById((Long) session.getAttribute("user_id")));
+        model.addAttribute("pet", petServ.getPetById(id));
+        petServ.getPetById(id).setStatus("Adopted");
+        return "confirm.jsp";
+    }
 }
