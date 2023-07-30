@@ -64,6 +64,22 @@ public class PetController {
 
 
 
+
+  @GetMapping("{breed}/pets")
+  public String getBreedPets(
+      HttpSession session,
+      Model model,
+      @PathVariable("breed") String name
+  ) {
+    if (session.getAttribute("user_id") == null) {
+      return "redirect:/";
+    }
+    model.addAttribute("breed", breedServ.getBreedByName(name));
+//    model.addAttribute("pets", petServ.getPetsByBreed("cat"));
+    return "getAllPetsByBreed.jsp";
+  }
+
+
   /**
    * this route renders the form to create a pet post we are passing the id of the logged user to
    * set it as the creator of the pet post
@@ -78,7 +94,8 @@ public class PetController {
     }
     model.addAttribute("user_id", session.getAttribute("user_id"));
     model.addAttribute("breeds", breedServ.getAllBreeds());
-    return "createPet.jsp";
+//    model.addAttribute("breed",breed);
+    return "newPet.jsp";
   }
 
   /**
