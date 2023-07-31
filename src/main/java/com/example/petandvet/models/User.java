@@ -6,8 +6,10 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -79,6 +81,19 @@ public class User {
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
   private List<Pet> pets;
 
-  @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-  private Cart cart;
+
+
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "carts",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "product_id")
+  )
+  private List<Product> products;
+
+
+
+
+
 }

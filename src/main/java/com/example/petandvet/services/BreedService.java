@@ -1,7 +1,6 @@
 package com.example.petandvet.services;
 
 import com.example.petandvet.models.Breed;
-import com.example.petandvet.models.Product;
 import com.example.petandvet.repositories.BreedRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -33,12 +32,12 @@ public class BreedService {
     breedRepo.deleteById(id);
   }
 
-  public List<Product> getProductsByBreed(Breed breed) {
-    return breed.getProducts();
-  }
+//  public List<Product> getProductsByBreed(Breed breed) {
+//    return breed.getProducts();
+//  }
 
-  public Breed getBreedByName(String name) {
-    return breedRepo.getBreedByName(name);
+//  public Breed getBreedByName(String name) {
+//    return breedRepo.getBreedByName(name);
   }
 
 
@@ -47,4 +46,4 @@ public class BreedService {
 //  }
 
 
-}
+//}

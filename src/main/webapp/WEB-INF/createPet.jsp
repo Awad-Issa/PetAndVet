@@ -52,7 +52,7 @@
     </div>
 </nav>
 <!-- Header-->
-<header class="bg-dark py-5">
+<header class="bg-dark py-5" style="background-image:url('https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') !important;">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Shop in style</h1>

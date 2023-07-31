@@ -47,7 +47,7 @@
                             <hr class="dropdown-divider"/>
                         </li>
 
-                        <c:if test="${user.id == 4}">
+                        <c:if test="${user.id == 1}">
                         <li><a class="dropdown-item" href="/admin">Admin</a></li>
                         </c:if>
 
@@ -112,7 +112,7 @@
         </ul>
     </li>
 
-    <li class="nav-item"><a class="nav-link" href="/favorite">Favorite</a></li>
+<%--    <li class="nav-item"><a class="nav-link" href="/favorite">Favorite</a></li>--%>
     <li class="nav-item"><a class="nav-link" href="/pets/new">Add Pet</a></li>
 
     <li class="nav-item"><a class="nav-link" href="/petsLocation">Search in ${user.location}</a></li>

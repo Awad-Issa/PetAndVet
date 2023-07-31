@@ -20,6 +20,7 @@ public class UserService {
     return userRepo.findById(id).orElse(null);
   }
 
+
   public User register(User newUser, BindingResult result) {
     //.matches("^[a-zA-Z]*$")
     if (!(newUser.getUserName()).matches("^[a-zA-Z]*$")) {
@@ -64,5 +65,4 @@ public class UserService {
     
     userRepo.delete(user);
   }
-
 }

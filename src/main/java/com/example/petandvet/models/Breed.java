@@ -55,6 +55,6 @@ public class Breed {
   @OneToMany(mappedBy = "breed", fetch = FetchType.LAZY)
   private List<Pet> pets;
 
-  @OneToMany(mappedBy = "breed", fetch = FetchType.LAZY)
-  private List<Product> products;
+//  @OneToMany(mappedBy = "breed", fetch = FetchType.LAZY)
+//  private List<Product> products;
 }

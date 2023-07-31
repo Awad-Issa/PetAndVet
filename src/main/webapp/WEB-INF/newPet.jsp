@@ -65,11 +65,11 @@
     </div>
 </nav>
 <!-- Header-->
-<header class="bg-dark py-5" style="background-image:  !important;">
+<header class="bg-dark py-5" style="background-image:url('') !important;">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Shop in style</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Pet And vet</p>
+            <h1 class="display-4 fw-bolder">Pet<span style="color: #809842" >And</span>Vet </h1>
+            <p class="lead fw-normal text-white-50 mb-0">Enjoy in our website</p>
         </div>
     </div>
 </header>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css">
 </head>
-<body style="background-color: #fffae3;">
+<body style="background-color: ;">
    
 <div class="container">
 </div>
@@ -21,7 +21,7 @@
     margin: 0 auto;">
     <section style="margin-right: 20px">
         <form:form action="/register" method="post" modelAttribute="newUser">
-        <h2 style="color: #809842;  text-decoration: underline;">Registration</h2><br>
+        <h2 style="color: #203171;  text-decoration: underline;">Registration</h2><br>
         <div class="form-group row mb-3">
             <form:label path="userName" class="col-sm-4 col-form-label">User Name:</form:label>
             <form:errors path="userName" style="color:red;"/>
@@ -73,14 +73,14 @@
                 <br>
             </div>
             <input id="button" type="submit" value="Submit" class="btn btn-primary"
-                   style="background-color: #ff821c"/>
+                   style="background-color: #203171"/>
             </form:form>
     </section>
     <section>
 
 
         <form:form action="/login" method="post" modelAttribute="newLogin">
-            <h2 style="color: #809842;text-decoration: underline;">Login</h2><br>
+            <h2 style="color: #203171;text-decoration: underline;">Login</h2><br>
             <div class="form-group row mb-3">
                 <form:label path="email" class="col-sm-4 col-form-label">Email:</form:label>
                 <form:errors path="email" style="color:red;"/>
@@ -96,7 +96,7 @@
                 </div>
             </div>
             <input id="button" type="submit" value="Submit" class="btn btn-primary"
-                   style="background-color: #ff821c"/>
+                   style="background-color: #203171"/>
         </form:form>
     </section>
 </main>
