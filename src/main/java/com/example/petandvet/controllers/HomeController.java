@@ -1,14 +1,15 @@
 package com.example.petandvet.controllers;
 
-
-import com.example.petandvet.models.Cart;
 import com.example.petandvet.models.LoginUser;
+import com.example.petandvet.models.Product;
 import com.example.petandvet.models.User;
 import com.example.petandvet.services.BreedService;
 import com.example.petandvet.services.PetService;
+import com.example.petandvet.services.ProductService;
 import com.example.petandvet.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ public class HomeController {
   private UserService userServ;
   private BreedService breedServ;
   private PetService petServ;
+  private ProductService productServ;
 
   @GetMapping("/")
   public String index(Model model, HttpSession session) {
@@ -48,9 +50,9 @@ public class HomeController {
     session.setAttribute("user_id", regUser.getId());
     Long userId = (Long) session.getAttribute("user_id");
     User user = userServ.findUserById(userId);
-    Cart cart = new Cart();
-    cart.setUser(user);
-    user.setCart(cart);
+//    Cart cart = new Cart();
+//    cart.setUser(user);
+//    user.setCart(cart);
     return "redirect:/home";
   }
 
@@ -63,8 +65,8 @@ public class HomeController {
       return "login.jsp";
     }
     session.setAttribute("user_id", logUser.getId());
-     Long x = (Long) session.getAttribute("user_id");
-    if  ( x == 4){
+    Long x = (Long) session.getAttribute("user_id");
+    if (x == 1) {
       return "redirect:/admin";
     }
     return "redirect:/home";
@@ -103,9 +105,13 @@ public class HomeController {
   }
 
   @GetMapping("/admin")
-  public String admin(){
+  public String admin(Model model) {
+    List<Product>productList = productServ.getAllProducts();
+    model.addAttribute("products", productList);
+
     return "admin.jsp";
   }
+
 
 
 

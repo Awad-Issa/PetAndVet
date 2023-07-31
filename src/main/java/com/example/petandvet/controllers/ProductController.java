@@ -80,7 +80,7 @@ public class ProductController {
     }
     productServ.createProduct(product);
 
-    return "redirect:/pets";
+    return "redirect:/admin";
   }
 
   @GetMapping("product/{id}/delete")
@@ -89,7 +89,7 @@ public class ProductController {
       return "redirect:/";
     }
     productServ.deleteProduct(id);
-    return "redirect:/pets";
+    return "redirect:/admin";
   }
 
   @GetMapping("{breed}/products")
@@ -101,7 +101,7 @@ public class ProductController {
     if (session.getAttribute("user_id") == null) {
       return "redirect:/";
     }
-    model.addAttribute("breed", breedServ.getBreedByName(name));
+//    model.addAttribute("breed", breedServ.getBreedByName(name));
     return "breedProducts.jsp";
   }
 
@@ -113,7 +113,46 @@ public class ProductController {
     User user = userServ.findUserById((Long) session.getAttribute("user_id"));
     model.addAttribute("user", user);
     model.addAttribute("products",productServ.getAllProducts());
+
     return "allProducts.jsp";
   }
 
-}
+
+  @GetMapping("/cart")
+  public String cart(Model model, HttpSession session){
+    if (session.getAttribute("user_id") == null) {
+      return "redirect:/";
+    }
+    User user = userServ.findUserById((Long) session.getAttribute("user_id"));
+    model.addAttribute("user", user);
+
+    return "cart.jsp";
+  }
+
+
+
+  @PostMapping("/addProductToCart/{id}")
+  public String addToCart(@PathVariable("id") Long productId, Model model, HttpSession session){
+    if (session.getAttribute("user_id") != null) {
+      System.out.println("1111111111111111");
+      Long userId = (Long) session.getAttribute("user_id");
+      User currentUser = userServ.findUserById(userId);
+      model.addAttribute("currentUser", currentUser);
+
+      System.out.println("222222222222222222");
+      Product product = productServ.findProduct(productId);
+      product.getUsers().add(currentUser);
+      productServ.createProduct(product);
+
+      System.out.println("33333333333333333");
+
+      return "redirect:/allProducts";
+    }
+    return "redirect:/";
+
+    }
+  }
+
+
+
+

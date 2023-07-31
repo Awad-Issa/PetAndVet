@@ -2,7 +2,7 @@ package com.example.petandvet.controllers;
 
 import com.example.petandvet.models.Pet;
 import com.example.petandvet.models.User;
-import com.example.petandvet.services.BreedService;
+import com.example.petandvet.services.EmailSenderService;
 import com.example.petandvet.services.PetService;
 import com.example.petandvet.services.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -22,7 +22,8 @@ public class PetController {
 
   private final PetService petServ;
   private final UserService userServ;
-  private final BreedService breedServ;
+//  private final BreedService breedServ;
+  private final EmailSenderService emailSenderService;
 
   /**
    * this route renders the dashboard of the logged user we are passing the id of the logged user to
@@ -40,7 +41,7 @@ public class PetController {
     model.addAttribute("user", user);
 //    model.addAttribute("pets", petServ.getPetsByLocation(user.getLocation()));
     model.addAttribute("pets", petServ.getAllPets());
-    model.addAttribute("breed", breedServ.getAllBreeds());
+//    model.addAttribute("breed", breedServ.getAllBreeds());
     return "HomeTest.jsp";
   }
 
@@ -58,7 +59,7 @@ public class PetController {
     model.addAttribute("user", user);
     model.addAttribute("pets", petServ.getPetsByLocation(user.getLocation()));
 //    model.addAttribute("pets", petServ.getAllPets());
-    model.addAttribute("breed", breedServ.getAllBreeds());
+//    model.addAttribute("breed", breedServ.getAllBreeds());
     return "searchLocation.jsp";
   }
 
@@ -74,7 +75,7 @@ public class PetController {
     if (session.getAttribute("user_id") == null) {
       return "redirect:/";
     }
-    model.addAttribute("breed", breedServ.getBreedByName(name));
+//    model.addAttribute("breed", breedServ.getBreedByName(name));
 //    model.addAttribute("pets", petServ.getPetsByBreed("cat"));
     return "getAllPetsByBreed.jsp";
   }
@@ -93,7 +94,7 @@ public class PetController {
       return "redirect:/";
     }
     model.addAttribute("user_id", session.getAttribute("user_id"));
-    model.addAttribute("breeds", breedServ.getAllBreeds());
+//    model.addAttribute("breeds", breedServ.getAllBreeds());
 //    model.addAttribute("breed",breed);
     return "newPet.jsp";
   }
@@ -128,9 +129,20 @@ public class PetController {
       @PathVariable("id") Long id
   ) {
     if (session.getAttribute("user_id") == null) {
+
       return "redirect:/";
+
     }
+    Long userId = (Long) session.getAttribute("user_id");
+    User currentUser = userServ.findUserById(userId);
+    model.addAttribute("currentUser", currentUser);
     model.addAttribute("pet", petServ.getPetById(id));
+    emailSenderService.sendSimpleEmail(currentUser.getEmail(),
+        "Thank You for Your Purchase from Book Depository!",
+        "Dear " + currentUser.getUserName() + ",\n" + "\n" + "This is a summary of your order " + "\n"
+            + "Invoice: " + "\n" + "Book Name: "+ "." + "\n" + "Price: " + "$" +   "." + "\n" +
+            "Purchase Date: " + "\n" + "\n" +
+            "See you later!");
     return "showPet.jsp";
   }
 

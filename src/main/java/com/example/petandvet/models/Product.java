@@ -16,6 +16,7 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,7 @@ public class Product {
   private Long id;
 
   @NotBlank(message = "Name is required!")
+  @Size(min = 2 , max = 51)
   private String name;
 
   private String description;
@@ -68,11 +70,12 @@ public class Product {
   @JoinColumn(name = "breed_id")
   private Breed breed;
 
+
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(
-      name = "carts_products",
-      joinColumns = @JoinColumn(name = "cart_id"),
+      name = "carts",
+      joinColumns = @JoinColumn(name = "user_id"),
       inverseJoinColumns = @JoinColumn(name = "product_id")
   )
-  private List<Cart> cart;
+  private List<User> users;
 }

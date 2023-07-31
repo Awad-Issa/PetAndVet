@@ -56,8 +56,8 @@
             <form class="d-flex">
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi-cart-fill me-1"></i>
-                    Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    <a href="/cart">Cart</a>
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">${user.products.size()}</span>
                 </button>
             </form>
         </div>
@@ -67,8 +67,8 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Shop in style</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <h1 class="display-4 fw-bolder">Pet<span style="color: #809842" >And</span>Vet </h1>
+            <p class="lead fw-normal text-white-50 mb-0">Enjoy in our website</p>
         </div>
     </div>
 </header>
@@ -170,12 +170,21 @@
                                 <div class="bi-star-fill"></div>
                             </div>
                             <!-- Product price-->
-                            $${product.price}
+                           <span>$</span>${product.price}
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+
+                        <form action="/addProductToCart/${product.id}" method="post">
+
+                            <input type="hidden" name="user" value="${user.id}"/>
+
+                            <div class="text-center">    <input type="submit" value="Add to cart" class="btn btn-primary" class="btn btn-outline-dark mt-auto"></div>
+
+
+                        </form>
+<%--                       <a class="btn btn-outline-dark mt-auto" href="/">Add to cart</a>--%>
                     </div>
                 </div>
             </div>
