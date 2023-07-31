@@ -161,7 +161,7 @@
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                                        href="/pets/${pet.id}">Adopt</a></div>
+                                                        href="/pets/${pet.id}/adopt">Adopt</a></div>
                         </div>
                     </div>
                 </div>

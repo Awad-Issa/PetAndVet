@@ -31,8 +31,8 @@ public class PetController {
    */
   @GetMapping("/home")
   public String home(
-      Model model,
-      HttpSession session
+          Model model,
+          HttpSession session
   ) {
     if (session.getAttribute("user_id") == null) {
       return "redirect:/";
@@ -49,8 +49,8 @@ public class PetController {
 
   @GetMapping("/petsLocation")
   public String searchLocation(
-      Model model,
-      HttpSession session
+          Model model,
+          HttpSession session
   ) {
     if (session.getAttribute("user_id") == null) {
       return "redirect:/";
@@ -87,8 +87,8 @@ public class PetController {
    */
   @GetMapping("/pets/new")
   public String newPet(
-      HttpSession session,
-      Model model, @ModelAttribute("pet") Pet pet
+          HttpSession session,
+          Model model, @ModelAttribute("pet") Pet pet
   ) {
     if (session.getAttribute("user_id") == null) {
       return "redirect:/";
@@ -104,9 +104,9 @@ public class PetController {
    */
   @PostMapping("/pets/new")
   public String createPet(
-      HttpSession session,
-      @Valid @ModelAttribute("pet") Pet pet,
-      BindingResult result
+          HttpSession session,
+          @Valid @ModelAttribute("pet") Pet pet,
+          BindingResult result
   ) {
     if (session.getAttribute("user_id") == null) {
       return "redirect:/";
@@ -124,9 +124,9 @@ public class PetController {
    */
   @GetMapping("/pets/{id}")
   public String showPet(
-      HttpSession session,
-      Model model,
-      @PathVariable("id") Long id
+          HttpSession session,
+          Model model,
+          @PathVariable("id") Long id
   ) {
     if (session.getAttribute("user_id") == null) {
 
@@ -151,9 +151,9 @@ public class PetController {
    */
   @GetMapping("/pets/{id}/edit")
   public String editPet(
-      HttpSession session,
-      Model model,
-      @ModelAttribute("pet") Pet pet
+          HttpSession session,
+          Model model,
+          @ModelAttribute("pet") Pet pet
   ) {
     if (session.getAttribute("user_id") == null) {
       return "redirect:/";
@@ -165,9 +165,9 @@ public class PetController {
 
   @PostMapping("/pets/{id}/edit")
   public String updatePet(
-      HttpSession session,
-      @Valid @ModelAttribute("pet") Pet pet,
-      BindingResult result
+          HttpSession session,
+          @Valid @ModelAttribute("pet") Pet pet,
+          BindingResult result
   ) {
     if (session.getAttribute("user_id") == null) {
       return "redirect:/";
@@ -181,8 +181,8 @@ public class PetController {
 
   @GetMapping("/pets/{id}/delete")
   public String deletePet(
-      HttpSession session,
-      @PathVariable("id") Long id
+          HttpSession session,
+          @PathVariable("id") Long id
   ) {
     if (session.getAttribute("user_id") == null) {
       return "redirect:/";
@@ -196,8 +196,8 @@ public class PetController {
    */
   @GetMapping("/pets/user")
   public String showUserPets(
-      HttpSession session,
-      Model model
+          HttpSession session,
+          Model model
   ) {
     if (session.getAttribute("user_id") == null) {
       return "redirect:/";
@@ -207,4 +207,33 @@ public class PetController {
     model.addAttribute("pets", user.getPets());
     return "userPets.jsp";
   }
+
+  @GetMapping("/pets/{id}/adopt")
+  public String adopt(
+      HttpSession session,
+      Model model,
+      @PathVariable("id") Long id
+  ) {
+    if (session.getAttribute("user_id") == null) {
+      return "redirect:/";
+    }
+    model.addAttribute("user", userServ.findUserById((Long) session.getAttribute("user_id")));
+    model.addAttribute("pet", petServ.getPetById(id));
+    return "showPet.jsp";
+  }
+
+  @GetMapping("/pets/{id}/confirm")
+    public String confirm(
+        HttpSession session,
+        Model model,
+        @PathVariable("id") Long id
+    ) {
+        if (session.getAttribute("user_id") == null) {
+        return "redirect:/";
+        }
+        model.addAttribute("user", userServ.findUserById((Long) session.getAttribute("user_id")));
+        model.addAttribute("pet", petServ.getPetById(id));
+        petServ.getPetById(id).setStatus("Adopted");
+        return "confirm.jsp";
+    }
 }
