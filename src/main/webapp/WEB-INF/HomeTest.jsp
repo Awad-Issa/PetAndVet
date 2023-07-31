@@ -43,11 +43,14 @@
                         <li><a class="dropdown-item" href="/profilePage">Profile Page</a></li>
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
 
-
                         <li>
                             <hr class="dropdown-divider"/>
                         </li>
-                        <li><a class="dropdown-item" href="#!">Admin</a></li>
+
+                        <c:if test="${user.id == 4}">
+                        <li><a class="dropdown-item" href="/admin">Admin</a></li>
+                        </c:if>
+
 
                     </ul>
                 </li>
@@ -63,11 +66,11 @@
     </div>
 </nav>
 <!-- Header-->
-<header class="bg-dark py-5" style="background-image: url('');" >
+<header class="bg-dark py-5" style="background-image: url('htts://img.freepik.com/premium-vector/seamless-pattern-with-cute-cats-flowers-vector-graphics_250613-1199.jpg?w=2000');" >
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Shop in style</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <h1 class="display-4 fw-bolder">Pet<span style="color: #809842" >And</span>Vet </h1>
+            <p class="lead fw-normal text-white-50 mb-0">Enjoy in our website</p>
         </div>
     </div>
 </header>

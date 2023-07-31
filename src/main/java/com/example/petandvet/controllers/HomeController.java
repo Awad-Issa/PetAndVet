@@ -1,6 +1,7 @@
 package com.example.petandvet.controllers;
 
 
+import com.example.petandvet.models.Cart;
 import com.example.petandvet.models.LoginUser;
 import com.example.petandvet.models.User;
 import com.example.petandvet.services.BreedService;
@@ -43,7 +44,13 @@ public class HomeController {
       model.addAttribute("newLogin", new LoginUser());
       return "login.jsp";
     }
+
     session.setAttribute("user_id", regUser.getId());
+    Long userId = (Long) session.getAttribute("user_id");
+    User user = userServ.findUserById(userId);
+    Cart cart = new Cart();
+    cart.setUser(user);
+    user.setCart(cart);
     return "redirect:/home";
   }
 
@@ -56,6 +63,10 @@ public class HomeController {
       return "login.jsp";
     }
     session.setAttribute("user_id", logUser.getId());
+     Long x = (Long) session.getAttribute("user_id");
+    if  ( x == 4){
+      return "redirect:/admin";
+    }
     return "redirect:/home";
   }
 
@@ -89,6 +100,11 @@ public class HomeController {
     model.addAttribute("user", user);
 
     return "aboutUs.jsp";
+  }
+
+  @GetMapping("/admin")
+  public String admin(){
+    return "admin.jsp";
   }
 
 
